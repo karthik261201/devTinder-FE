@@ -1,14 +1,21 @@
 import axios from "axios"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addUser } from "../utils/userSlice"
+import { useNavigate } from "react-router-dom"
+import { BASE_URL } from "../utils/constants"
 
 const Login = () => {
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
+    const [email,setEmail] = useState("karthik@gmail.com")
+    const [password,setPassword] = useState("Karthik@123")
+    const dispatch = useDispatch()
+    const naviagte = useNavigate()
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post("http://localhost:3000/login",{ emailId: email, password: password },{ withCredentials: true })
-            console.log(res.data)
+            const res = await axios.post(BASE_URL+"/login",{ emailId: email, password: password },{ withCredentials: true })
+            dispatch(addUser(res.data))
+            naviagte("/")
         }catch (err) {
             console.log(err)
         }
@@ -22,11 +29,11 @@ const Login = () => {
                     <div>
                         <fieldset className="fieldset pb-4">
                             <legend className="fieldset-legend text-sm">Email</legend>
-                            <input type="text" className="input" onChange={(e) => setEmail(e.target.value)} />
+                            <input type="text" className="input" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </fieldset>
                         <fieldset className="fieldset pb-4">
                             <legend className="fieldset-legend text-sm">Password</legend>
-                            <input type="password" className="input" onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </fieldset>
                     </div>
                     <div className="card-actions justify-center">
