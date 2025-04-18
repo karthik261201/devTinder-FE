@@ -8,7 +8,7 @@ import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
 
 const Body = () => {
-    const naviagte = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector((store) => store.user)
 
@@ -19,7 +19,7 @@ const Body = () => {
         }
         catch(err) {
             if(err.status === 401) {
-                naviagte("/login")
+                navigate("/login")
             }
             console.log(err)
         }
@@ -30,9 +30,11 @@ const Body = () => {
     },[])
 
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <NavBar />
-            <Outlet />
+            <main className="flex-grow">
+                <Outlet />
+            </main>
             <Footer />
         </div>
     )
