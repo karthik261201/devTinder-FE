@@ -50,8 +50,8 @@ const Requests = () => {
                                 <p className="text-base-content/90">{about}</p>
                             </div>
                             <div>
-                                <button className="btn btn-primary mx-2" onClick={() => {reviewRequests("rejected",r._id)}}>Reject</button>
-                                <button className="btn btn-secondary mx-2" onClick={() => {reviewRequests("accepted",r._id)}}>Accept</button>
+                                <button className="btn btn-primary my-2" onClick={() => {reviewRequests("rejected",r._id)}}>Reject</button>
+                                <button className="btn btn-secondary my-2" onClick={() => {reviewRequests("accepted",r._id)}}>Accept</button>
                             </div>
                         </div>
                     )
