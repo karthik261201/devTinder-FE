@@ -83,4 +83,5 @@ const EditProfile = ({ user }) => {
         </>
     )
 }
+
 export default EditProfile
